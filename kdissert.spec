@@ -40,7 +40,8 @@ export CXXFLAGS="%{rpmcflags}"
 
 # autodetects all needed paths from kde-config not sure it supports amd64 at the moment
 # im talking about it with the maintainer of kde's scons-based buildsystem
-scons configure qtincludes=%{_includedir}/qt prefix=%{_prefix} %{?debug:debug=full}
+scons configure qtincludes=%{_includedir}/qt prefix=%{_prefix} %{?debug:debug=full} \
+	qtlibs=%{_libdir}
 scons
 
 %install
