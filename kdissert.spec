@@ -3,7 +3,7 @@ Summary:	kdissert is a mindmapping-like tool to help students to produce complic
 Summary(pl):	kdissert wspiera tworzenie map my¶li
 Name:		kdissert
 Version:	0.3.9
-Release:	0.%{_pre}.1
+Release:	0.%{_pre}.2
 License:	GPL
 Group:		Applications
 Source0:	http://freehackers.org/~tnagy/%{name}/%{name}-%{version}.%{_pre}.tar.bz2
