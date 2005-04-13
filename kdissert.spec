@@ -37,10 +37,16 @@ install %{SOURCE1} ./kde.py
 
 %build
 export CXXFLAGS="%{rpmcflags}"
-export QTDIR="%{_usr}"
+#export QTDIR="%{_usr}"
 # autodetects all needed paths from kde-config not sure it supports amd64 at the moment
 # im talking about it with the maintainer of kde's scons-based buildsystem
-scons configure qtincludes=%{_includedir}/qt prefix=%{_prefix} %{?debug:debug=full} \
+
+scons configure \
+	qtincludes=%{_includedir}/qt \
+	prefix=%{_prefix} %{?debug:debug=full} \
+%if "%{_lib}" == "lib64"
+	libsuffix=64 \
+%endif
 	qtlibs=%{_libdir}
 scons
 
