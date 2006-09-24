@@ -2,7 +2,7 @@ Summary:	kdissert - a mindmapping-like tool to help students to produce complica
 Summary(pl):	kdissert - narzêdzie wspomagaj±ce tworzenie map my¶li
 Name:		kdissert
 Version:	1.0.6c
-Release:	1	
+Release:	1
 License:	GPL
 Group:		Applications
 Source0:	http://freehackers.org/~tnagy/kdissert/%{name}-%{version}.tar.bz2
@@ -40,7 +40,7 @@ export QTDIR="%{_usr}"
 # autodetects all needed paths from kde-config not sure it supports amd64 at the moment
 # im talking about it with the maintainer of kde's scons-based buildsystem
 
-./waf  configure \
+./waf configure \
 	--qtincludes=%{_includedir}/qt \
 	--prefix=%{_prefix} %{?debug:debug=full} \
 %if "%{_lib}" == "lib64"
@@ -52,9 +52,9 @@ export QTDIR="%{_usr}"
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT
-DESTDIR=$RPM_BUILD_ROOT ./waf install --destdir $RPM_BUILD_ROOT
+./waf install --destdir $RPM_BUILD_ROOT
 
-%find_lang %{name} --with-kde 
+%find_lang %{name} --with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -88,15 +88,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kdissert
 %{_datadir}/apps/kdissertpart
 %{_datadir}/config.kcfg/kdissert.kcfg
-%{_iconsdir}/hicolor/128x128/apps/kdissert.png
-%{_iconsdir}/hicolor/16x16/apps/kdissert.png
-%{_iconsdir}/hicolor/22x22/apps/kdissert.png
-%{_iconsdir}/hicolor/32x32/apps/kdissert.png
-%{_iconsdir}/hicolor/64x64/apps/kdissert.png
-%{_iconsdir}/hicolor/128x128/actions/*.png
-%{_iconsdir}/hicolor/16x16/actions/*.png
-%{_iconsdir}/hicolor/22x22/actions/*.png
-%{_iconsdir}/hicolor/32x32/actions/*.png
-%{_iconsdir}/hicolor/64x64/actions/*.png
+%{_iconsdir}/hicolor/*/*/*.png
 %{_datadir}/mimelnk/application/x-kdissert.desktop
 %{_datadir}/services/kdissertpart.desktop
+%{_datadir}/applnk/Utilities/kdissert.desktop
