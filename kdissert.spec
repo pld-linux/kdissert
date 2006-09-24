@@ -1,13 +1,12 @@
-%define		_pre	pre6
 Summary:	kdissert - a mindmapping-like tool to help students to produce complicated documents
 Summary(pl):	kdissert - narzêdzie wspomagaj±ce tworzenie map my¶li
 Name:		kdissert
-Version:	0.3.9
-Release:	0.%{_pre}.2
+Version:	1.0.6c
+Release:	1	
 License:	GPL
 Group:		Applications
-Source0:	http://freehackers.org/~tnagy/kdissert/%{name}-%{version}.%{_pre}.tar.bz2
-# Source0-md5:	2b4df25dff5a12dc496ec2570c81fc62
+Source0:	http://freehackers.org/~tnagy/kdissert/%{name}-%{version}.tar.bz2
+# Source0-md5:	cd7116fb61ee4cf7b87c8916ef5f7a5f
 Source1:	%{name}-kde.py
 URL:		http://freehackers.org/~tnagy/kdissert/
 BuildRequires:	kdelibs-devel >= 9:3.2.0
@@ -32,9 +31,8 @@ przez kszta³t, który mo¿e zawieraæ opis; pola tekstowe oraz je¶li
 zachodzi taka potrzeba obrazki i odno¶niki.
 
 %prep
-%setup -q -n %{name}-%{version}.%{_pre}
+%setup -q
 %{__sed} -i -e 's/Categories=.*/Categories=QT;KDE;Education;/g' src/appdata/kdissert.desktop
-install %{SOURCE1} ./kde.py
 
 %build
 export CXXFLAGS="%{rpmcflags}"
@@ -42,19 +40,19 @@ export QTDIR="%{_usr}"
 # autodetects all needed paths from kde-config not sure it supports amd64 at the moment
 # im talking about it with the maintainer of kde's scons-based buildsystem
 
-scons configure \
-	qtincludes=%{_includedir}/qt \
-	prefix=%{_prefix} %{?debug:debug=full} \
+./waf  configure \
+	--qtincludes=%{_includedir}/qt \
+	--prefix=%{_prefix} %{?debug:debug=full} \
 %if "%{_lib}" == "lib64"
-	libsuffix=64 \
+	--libsuffix=64 \
 %endif
-	qtlibs=%{_libdir}
-scons
+	--qtlibs=%{_libdir}
+./waf
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT
-DESTDIR=$RPM_BUILD_ROOT scons install
+DESTDIR=$RPM_BUILD_ROOT ./waf install --destdir $RPM_BUILD_ROOT
 
 %find_lang %{name} --with-kde 
 
@@ -82,25 +80,23 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/libkdisspdflatexbook.so
 %{_libdir}/kde3/libkdissprosperslides.la
 %attr(755,root,root) %{_libdir}/kde3/libkdissprosperslides.so
+%{_libdir}/kde3/libkdissdocbook.la
+%attr(755,root,root) %{_libdir}/kde3/libkdissdocbook.so
+%{_libdir}/kde3/libkdissstx.la
+%attr(755,root,root) %{_libdir}/kde3/libkdissstx.so
 %{_desktopdir}/kde/kdissert.desktop
 %{_datadir}/apps/kdissert
 %{_datadir}/apps/kdissertpart
 %{_datadir}/config.kcfg/kdissert.kcfg
-%{_iconsdir}/crystalsvg/128x128/actions/kdissert_sort.png
-%{_iconsdir}/crystalsvg/16x16/actions/kdissert_link.png
-%{_iconsdir}/crystalsvg/16x16/actions/kdissert_point.png
-%{_iconsdir}/crystalsvg/16x16/actions/kdissert_sort.png
-%{_iconsdir}/crystalsvg/22x22/actions/kdissert_link.png
-%{_iconsdir}/crystalsvg/22x22/actions/kdissert_point.png
-%{_iconsdir}/crystalsvg/22x22/actions/kdissert_sort.png
-%{_iconsdir}/crystalsvg/32x32/actions/kdissert_link.png
-%{_iconsdir}/crystalsvg/32x32/actions/kdissert_point.png
-%{_iconsdir}/crystalsvg/32x32/actions/kdissert_sort.png
-%{_iconsdir}/crystalsvg/64x64/actions/kdissert_sort.png
 %{_iconsdir}/hicolor/128x128/apps/kdissert.png
 %{_iconsdir}/hicolor/16x16/apps/kdissert.png
 %{_iconsdir}/hicolor/22x22/apps/kdissert.png
 %{_iconsdir}/hicolor/32x32/apps/kdissert.png
 %{_iconsdir}/hicolor/64x64/apps/kdissert.png
+%{_iconsdir}/hicolor/128x128/actions/*.png
+%{_iconsdir}/hicolor/16x16/actions/*.png
+%{_iconsdir}/hicolor/22x22/actions/*.png
+%{_iconsdir}/hicolor/32x32/actions/*.png
+%{_iconsdir}/hicolor/64x64/actions/*.png
 %{_datadir}/mimelnk/application/x-kdissert.desktop
 %{_datadir}/services/kdissertpart.desktop
