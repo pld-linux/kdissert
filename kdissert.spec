@@ -2,15 +2,15 @@ Summary:	kdissert - a mindmapping-like tool to help students to produce complica
 Summary(pl):	kdissert - narzêdzie wspomagaj±ce tworzenie map my¶li
 Name:		kdissert
 Version:	1.0.7
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications
 Source0:	http://freehackers.org/~tnagy/kdissert/%{name}-%{version}.tar.bz2
 # Source0-md5:	8e72785b8ab2adfc959522fcdcec10e6
 URL:		http://freehackers.org/~tnagy/kdissert/
 BuildRequires:	kdelibs-devel >= 9:3.2.0
-BuildRequires:	rpmbuild(macros) >= 1.129
-BuildRequires:	scons
+BuildRequires:	rpmbuild(macros) >= 1.335
+BuildRequires:	waf
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define         _noautoreq      libtool(.*)
@@ -36,28 +36,26 @@ zachodzi taka potrzeba obrazki i odno¶niki.
 %{__sed} -i -e 's/Categories=.*/Categories=QT;KDE;Education;/g' src/appdata/kdissert.desktop
 
 %build
-export CXXFLAGS="%{rpmcflags}"
 export QTDIR="%{_usr}"
-
-# To install waf directories (.waf-version, .wafcache) in building directory.
-export WAF_HOME=`pwd`
 
 # autodetects all needed paths from kde-config not sure it supports amd64 at the moment
 # im talking about it with the maintainer of kde's scons-based buildsystem
 
-./waf configure \
-	--qtincludes=%{_includedir}/qt \
+%waf configure \
 	--prefix=%{_prefix} %{?debug:debug=full} \
+	--qtincludes=%{_includedir}/qt \
 %if "%{_lib}" == "lib64"
 	--libsuffix=64 \
 %endif
 	--qtlibs=%{_libdir}
-./waf
+
+%waf
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT
-./waf install --destdir $RPM_BUILD_ROOT
+
+%waf install \
+	--destdir $RPM_BUILD_ROOT
 
 %find_lang %{name} --with-kde
 
