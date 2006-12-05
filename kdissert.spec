@@ -1,14 +1,12 @@
 Summary:	kdissert - a mindmapping-like tool to help students to produce complicated documents
 Summary(pl):	kdissert - narzêdzie wspomagaj±ce tworzenie map my¶li
 Name:		kdissert
-Version:	1.0.6c
+Version:	1.0.7
 Release:	1
 License:	GPL
 Group:		Applications
 Source0:	http://freehackers.org/~tnagy/kdissert/%{name}-%{version}.tar.bz2
-# Source0-md5:	cd7116fb61ee4cf7b87c8916ef5f7a5f
-Source1:	http://freehackers.org/~tnagy/waf
-# Source1-md5:	2c80272d967e6d9dded444d5ef2ac8e8
+# Source0-md5:	8e72785b8ab2adfc959522fcdcec10e6
 URL:		http://freehackers.org/~tnagy/kdissert/
 BuildRequires:	kdelibs-devel >= 9:3.2.0
 BuildRequires:	rpmbuild(macros) >= 1.129
@@ -38,13 +36,6 @@ zachodzi taka potrzeba obrazki i odno¶niki.
 %build
 export CXXFLAGS="%{rpmcflags}"
 export QTDIR="%{_usr}"
-
-# workaround for broken waf file. Waf building system was creating some hidden files in
-# user direcotry (.waf-version, .wafcache). Below the new version of waf is installed. 
-# This one creates these files in rpm/BUILD/kdissert-version directory. In case of upgrade
-# check if it is still necessary.
-rm waf
-install -m 755 %{SOURCE1} ./
 
 # To install waf directories (.waf-version, .wafcache) in building directory.
 export WAF_HOME=`pwd`
