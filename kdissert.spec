@@ -13,6 +13,8 @@ BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	scons
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define         _noautoreq      libtool(.*)
+
 %description
 The goal of kdissert is to help to structure ideas and concepts. Ideas
 are first layed down on a canvas and then associated into a tree. The
