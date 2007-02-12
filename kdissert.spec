@@ -1,5 +1,5 @@
 Summary:	kdissert - a mindmapping-like tool to help students to produce complicated documents
-Summary(pl):	kdissert - narzêdzie wspomagaj±ce tworzenie map my¶li
+Summary(pl.UTF-8):   kdissert - narzÄ™dzie wspomagajÄ…ce tworzenie map myÅ›li
 Name:		kdissert
 Version:	1.0.7
 Release:	2
@@ -23,13 +23,13 @@ develop them further (by adding ramifications). An idea is represented
 by a shape which contains several a summary (visible part), several
 text fields, and optional pictures and url links.
 
-%description -l pl
-Celem kdissert jest u³atwienie strukturalnej organizacji idei i
-koncepcji. Idee s± najpierw rozk³adane na p³ótnie, a nastêpnie
-budowane jest z nich drzewo, które ma u³atwiæ zrozumienie sposobu w
-jaki sposób ³±cz± siê ze sob± dane idee. Idea jest reprezentowana
-przez kszta³t, który mo¿e zawieraæ opis; pola tekstowe oraz je¶li
-zachodzi taka potrzeba obrazki i odno¶niki.
+%description -l pl.UTF-8
+Celem kdissert jest uÅ‚atwienie strukturalnej organizacji idei i
+koncepcji. Idee sÄ… najpierw rozkÅ‚adane na pÅ‚Ã³tnie, a nastÄ™pnie
+budowane jest z nich drzewo, ktÃ³re ma uÅ‚atwiÄ‡ zrozumienie sposobu w
+jaki sposÃ³b Å‚Ä…czÄ… siÄ™ ze sobÄ… dane idee. Idea jest reprezentowana
+przez ksztaÅ‚t, ktÃ³ry moÅ¼e zawieraÄ‡ opis; pola tekstowe oraz jeÅ›li
+zachodzi taka potrzeba obrazki i odnoÅ›niki.
 
 %prep
 %setup -q
