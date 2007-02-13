@@ -1,5 +1,5 @@
 Summary:	kdissert - a mindmapping-like tool to help students to produce complicated documents
-Summary(pl.UTF-8):   kdissert - narzędzie wspomagające tworzenie map myśli
+Summary(pl.UTF-8):	kdissert - narzędzie wspomagające tworzenie map myśli
 Name:		kdissert
 Version:	1.0.7
 Release:	2
